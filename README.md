@@ -22,7 +22,7 @@ Note: npm automatically installs while installing Node
    ```bash
    git clone https://github.com/RentEaseOrg/RentEase-frontend
    ```
-2. Navigate to the project directory by `cd project`
+2. Navigate to the project directory by `cd RentEase-frontend`
 
 3. Install Dependencies
 `npm install`
