@@ -11,7 +11,9 @@ Follow these steps to get the project up and running on your local machine.
 
 ### Prerequisites
 
-- npm
+- [npm](https://nodejs.org/en/download)
+
+Note: npm automatically installs while installing Node
 
 ### Installation
 
