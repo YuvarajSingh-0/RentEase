@@ -18,7 +18,7 @@ Follow these steps to get the project up and running on your local machine.
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/renteasecommunity/rentease-frontend.git 
+   git clone https://github.com/RentEaseOrg/RentEase-frontend
    ```
 2. Navigate to the project directory by `cd project`
 
