@@ -6,24 +6,24 @@ import { useNavigate } from "react-router-dom";
 
 const IsOwner = () => {
     const [user, loading] = useAuthState(auth);
-    const [isOwner, setIsOwner]=useState();
-    const navigate=useNavigate();
+    const [isOwner, setIsOwner] = useState();
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             const q = query(collection(db, "users"), where("email", "==", user.email));
             const querySnapshot = await getDocs(q);
             console.log(querySnapshot.docs.length)
-            if (querySnapshot.docs.length!==0){
+            if (querySnapshot.docs.length !== 0) {
                 navigate('/auth/ownerdashboard');
                 return;
             }
         };
         fetchData();
         console.log("isowner");
-    }, [isOwner,navigate,user.email]);
+    }, [isOwner, navigate, user.email]);
 
     useEffect(() => {
-        console.log("in useeffect",isOwner);
+        console.log("in useeffect", isOwner);
         const addData = async () => {
             console.log("in if");
             const docRef = await addDoc(collection(db, "users"), {
@@ -33,10 +33,10 @@ const IsOwner = () => {
             });
 
         }
-        if (isOwner!=null){
+        if (isOwner != null) {
             addData();
         }
-    }, [isOwner,user.displayName,user.email]);
+    }, [isOwner, user.displayName, user.email]);
 
 
     return (
@@ -44,13 +44,13 @@ const IsOwner = () => {
             <h1>Create Account as</h1>
             <button onClick={() => {
                 setIsOwner(true);
-                console.log("in setisowner",isOwner);
+                console.log("in setisowner", isOwner);
             }}>Owner</button>
             <button onClick={() => {
                 setIsOwner(false);
-                console.log("in setisowner",isOwner);
+                console.log("in setisowner", isOwner);
             }}>Tenant</button>
         </div>
-        )
+    )
 }
 export default IsOwner;
