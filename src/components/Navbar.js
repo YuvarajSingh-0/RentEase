@@ -1,3 +1,4 @@
+import { logout } from '../config/firebase';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
@@ -25,7 +26,7 @@ const Navbar = () => {
                             <i class="fi fi-br-user"></i>
                         </Link>
                     </li>
-                    <li><i class="fi fi-br-sign-out-alt"></i></li>
+                    <li onClick={logout}><i class="fi fi-br-sign-out-alt"></i></li>
                 </li>
             </ul>
         </div>

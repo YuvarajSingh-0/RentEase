@@ -7,8 +7,6 @@ const HouseCard= (props)=>{
             </div>
             <div className="card-info">
                 {props.info.isOccupied?<h3 className="badge green-badge">Occupied</h3>:<h3 className="badge red-badge">Vacant</h3>}
-                {/* <button className="badge green-badge">Occumpied</button>
-                <button className="badge red-badge">Vacant</button> */}
                 <table>
                     <tr>
                         <td>House No.</td>
