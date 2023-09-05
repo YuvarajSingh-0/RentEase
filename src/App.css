@@ -405,3 +405,46 @@ td input:focus{
   color: white;
   transform: rotateY(180deg);
 }
+
+.login-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  gap:20px;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form>input{
+  border: 0.2px solid #c9caca;  
+  background-color: transparent;
+  font-size: 17px;
+  color: #565d63;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 10px ;
+  margin:5px 0;
+}
+
+.login-btn{
+  background-color: #0ea0fbd7;
+  color: #fef9f6d7;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-btn:hover{
+  background-color: #66737e;
+  color: #fef9f6d7;
+}
+

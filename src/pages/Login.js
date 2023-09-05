@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react';
-import { auth, signInWithGoogle, db } from '../config/firebase'
+import React, { useEffect, useState } from 'react';
+import { auth, signInWithGoogle, db, logInWithEmailAndPassword } from '../config/firebase'
 import { getRedirectResult } from 'firebase/auth';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { collection, where, query, getDocs } from "firebase/firestore";
 // Sign in with Redirect
 const Login = () => {
     const [user, loading] = useAuthState(auth);
+    const [formDetails,setFormDetails]=useState({email:"",password:""});
     const navigate = useNavigate();
     useEffect(() => {
         if (user) {
@@ -19,18 +20,18 @@ const Login = () => {
                     navigate('/auth/ownerdashboard');
                     return;
                 }
-                else{
+                else {
                     navigate("/auth");
                 }
             };
             fetchData();
         }
-    }, [user,navigate]);
+    }, [user, navigate]);
 
 
     useEffect(() => {
         getRedirectResult(auth)
-            .then(async(result) => {
+            .then(async (result) => {
                 if (result) {
                     // This gives a Google Access Token and other user details.
                     const user = result.user;
@@ -41,7 +42,7 @@ const Login = () => {
                         navigate('/auth/ownerdashboard');
                         return;
                     }
-                    else{
+                    else {
                         // console.log(user);
                         navigate("/auth");
                     }
@@ -53,10 +54,29 @@ const Login = () => {
             });
     }, [navigate]);
 
+    const handleFormInput = (e) => {
+        e.preventDefault();
+        setFormDetails((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+
+
     return (
-        <div>
-            <h1>Login</h1>
-            <button onClick={signInWithGoogle}>{!loading ? "Login with Google": "loading..."}</button>
+        <div className='login-page'>
+            <h1 className='login-header'>Login</h1>
+            <form className='login-form'>
+                <input onChange={handleFormInput} type="email" placeholder="Email" name="email" id="email" required />
+                <input onChange={handleFormInput} type="password" placeholder="Password" name="password" id="password" required />
+                <button onClick={()=>{
+                    console.log(formDetails.email,formDetails.password);
+                    logInWithEmailAndPassword(formDetails.email,formDetails.password)
+                    }} type="submit" className='login-btn'>Login</button>
+            <hr style={{width:"100%"}} />
+            </form>
+            <button className='login-btn' onClick={signInWithGoogle}>{!loading ? "Login with Google" : "loading..."}</button>
         </div>
     )
 }
