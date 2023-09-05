@@ -406,6 +406,8 @@ td input:focus{
   transform: rotateY(180deg);
 }
 
+/* -------------------Login---------------------- */
+
 .login-page{
   display: flex;
   align-items: center;
@@ -419,6 +421,7 @@ td input:focus{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 25vw;
 }
 
 .login-form>input{

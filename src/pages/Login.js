@@ -54,6 +54,12 @@ const Login = () => {
             });
     }, [navigate]);
 
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        // Perform form validation if needed
+        logInWithEmailAndPassword(formDetails.email, formDetails.password);
+    };
+
     const handleFormInput = (e) => {
         e.preventDefault();
         setFormDetails((prev) => ({
@@ -63,18 +69,14 @@ const Login = () => {
     };
 
 
-
     return (
         <div className='login-page'>
             <h1 className='login-header'>Login</h1>
-            <form className='login-form'>
+            <form className='login-form' onSubmit={handleFormSubmit}>
                 <input onChange={handleFormInput} type="email" placeholder="Email" name="email" id="email" required />
                 <input onChange={handleFormInput} type="password" placeholder="Password" name="password" id="password" required />
-                <button onClick={()=>{
-                    console.log(formDetails.email,formDetails.password);
-                    logInWithEmailAndPassword(formDetails.email,formDetails.password)
-                    }} type="submit" className='login-btn'>Login</button>
-            <hr style={{width:"100%"}} />
+                <button type="submit" className='login-btn'>Login</button>
+                <hr style={{ width: "100%", color:"#c9caca"}} />
             </form>
             <button className='login-btn' onClick={signInWithGoogle}>{!loading ? "Login with Google" : "loading..."}</button>
         </div>
