@@ -7,6 +7,7 @@ import Payments from './pages/Payments';
 import Issues from './pages/Issues';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import LandingPage from './pages/LandingPage'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase'
 import IsOwner from './pages/IsOwner';
@@ -18,8 +19,6 @@ const PrivateRoutes = ({ children }) => {
     return <div>Loading...</div>;
   }
   return user ? children : <Navigate to="/login" />;
-  // const [user, loading, error] = useAuthState(auth);
-  // return user ? children : <Navigate to="/login" />;
 }
 
 function App() {
@@ -27,6 +26,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path='/' element={<LandingPage/>} />
           <Route path='/login' element={<Login />} />
           <Route path='/auth/*' element={
             <PrivateRoutes>

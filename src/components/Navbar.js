@@ -12,21 +12,21 @@ const Navbar = () => {
                 </li>
                 <li>
                     <Link to={'/issues'}>
-                        <i class="fi fi-br-info"></i>
+                        <i className="fi fi-br-info"></i>
                     </Link>
                 </li>
                 <li>
                     <Link to={'/payments'}>
-                        <i class="fi fi-br-wallet"></i>
+                        <i className="fi fi-br-wallet"></i>
                     </Link>
                 </li>
                 <li>
                     <li>
                         <Link to={'/profile'}>
-                            <i class="fi fi-br-user"></i>
+                            <i className="fi fi-br-user"></i>
                         </Link>
                     </li>
-                    <li onClick={logout}><i class="fi fi-br-sign-out-alt"></i></li>
+                    <li onClick={logout}><i className="fi fi-br-sign-out-alt"></i></li>
                 </li>
             </ul>
         </div>

@@ -62,7 +62,7 @@ const googleProvider = new GoogleAuthProvider();
     //     }
     // }
     
-const signInWithGoogle = async (isOwner = true) => {
+const signInWithGoogle = async () => {
         try {
             await signInWithRedirect(auth, googleProvider);
         } catch (err) {

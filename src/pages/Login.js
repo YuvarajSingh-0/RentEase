@@ -37,9 +37,12 @@ const Login = () => {
                     const user = result.user;
                     const q = query(collection(db, "users"), where("email", "==", user.email));
                     const querySnapshot = await getDocs(q);
-                    console.log(querySnapshot.docs.length)
+                    console.log(querySnapshot.docs[0].data())
                     if (querySnapshot.docs.length !== 0) {
+                        if(querySnapshot.docs[0].data().isOwner)
                         navigate('/auth/ownerdashboard');
+                        else
+                        navigate('/auth/tenantdashboard')
                         return;
                     }
                     else {
