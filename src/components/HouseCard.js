@@ -1,5 +1,23 @@
+import {getDoc} from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 const HouseCard= (props)=>{
-    console.log(props.info);
+    const [name,setName]=useState("");
+    // console.log(props.info);
+    // async get and set resident name
+    async function getName(docRef){
+        const data=await getDoc(docRef);
+        if(data.exists()){
+            setName(data.data().name);
+        }
+    }
+
+    useEffect(()=>{
+        // console.log(props.info.resident,typeof(props.info.resident))
+        if(typeof(props.info.resident)!='string' && props.info.resident){
+            getName(props.info.resident);
+        }
+    },[])
+
     return (
         <div className="card">
             <div className="card-image">
@@ -14,7 +32,7 @@ const HouseCard= (props)=>{
                     </tr>
                     <tr>
                         <td>Resident</td>
-                        <td>{props.info.resident}</td>
+                        <td>{name}</td>
                     </tr>
                     <tr>
                         <td>Phone</td>

@@ -1,61 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { auth, signInWithGoogle, db, logInWithEmailAndPassword } from '../config/firebase'
-import { getRedirectResult } from 'firebase/auth';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from 'react-router-dom';
-import { collection, where, query, getDocs } from "firebase/firestore";
+import { doc, getDoc, } from "firebase/firestore";
 
-// Sign in with Redirect
+// Sign in with Popup
 const Login = () => {
     const [user, loading] = useAuthState(auth);
     const [formDetails,setFormDetails]=useState({email:"",password:""});
     const navigate = useNavigate();
     useEffect(() => {
         if (user) {
-            const fetchData = async () => {
-                const q = query(collection(db, "users"), where("email", "==", user.email));
-                const querySnapshot = await getDocs(q);
-                console.log(querySnapshot.docs.length)
-                if (querySnapshot.docs.length !== 0) {
-                    navigate('/auth/ownerdashboard');
+            const fetchData = async (user) => {
+                const docRef = doc(db, "owners", user.uid);
+                const data = await getDoc(docRef);
+                // console.log(data.data())
+                if (data.data()) {
+                    if (data.data().isOwner)
+                        navigate('/auth/ownerdashboard');
+                    else
+                        navigate('/auth/tenantdashboard')
                     return;
                 }
                 else {
+                    // console.log(user);
                     navigate("/auth");
                 }
             };
-            fetchData();
+            fetchData(user);
         }
     }, [user, navigate]);
 
-
-    useEffect(() => {
-        getRedirectResult(auth)
-            .then(async (result) => {
-                if (result) {
-                    // This gives a Google Access Token and other user details.
-                    const user = result.user;
-                    const q = query(collection(db, "users"), where("email", "==", user.email));
-                    const querySnapshot = await getDocs(q);
-                    console.log(querySnapshot.docs[0].data())
-                    if (querySnapshot.docs.length !== 0) {
-                        if(querySnapshot.docs[0].data().isOwner)
-                        navigate('/auth/ownerdashboard');
-                        else
-                        navigate('/auth/tenantdashboard')
-                        return;
-                    }
-                    else {
-                        // console.log(user);
-                        navigate("/auth");
-                    }
-                }
-            })
-            .catch((error) => {
-                // Handle sign-in errors
-                console.log(error);
-            });
-    }, [navigate]);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();

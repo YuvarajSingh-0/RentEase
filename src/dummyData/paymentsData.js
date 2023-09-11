@@ -7,7 +7,7 @@ let dummyData = [
         phone: '123456789',
         due_date: '12/12/2021',
         amount: '10000',
-        status: 'pending',
+        paymentStatus: 'pending',
         address: '123, ABC Street, XYZ City',
         email: 'abc@abc.com',
         properties: '2',
@@ -27,7 +27,7 @@ let dummyData = [
         properties: '3',
         activeProperties: '2',
         amount: '10000',
-        status: 'paid',
+        paymentStatus: 'paid',
         city: 'Lahore',
         paymentDate: '11/12/2021'
     },
@@ -43,7 +43,7 @@ let dummyData = [
         activeProperties: '1',
         due_date: '20/12/2021',
         // amount: '200',
-        status: 'pending',
+        paymentStatus: 'pending',
         city: 'Islamabad',
         paymentDate: '19/12/2021'
     },
@@ -58,7 +58,7 @@ let dummyData = [
         activeProperties: '1',
         due_date: '18/12/2021',
         amount: '12000',
-        status: 'paid',
+        paymentStatus: 'paid',
         city: 'Rawalpindi',
         address: '567, JKL Lane, XYZ City',
         paymentDate: '10/12/2021'
@@ -75,7 +75,7 @@ let dummyData = [
         due_date: '22/12/2021',
         // amount: '80',
         address: '789, PQR Lane, XYZ City',
-        status: 'pending',
+        paymentStatus: 'pending',
         city: 'Karachi',
         paymentDate: '21/12/2021'
     },
@@ -91,7 +91,7 @@ let dummyData = [
         due_date: '25/12/2021',
         amount: '7000',
         address: '890, MNO Street, XYZ City',
-        status: 'pending',
+        paymentStatus: 'pending',
         city: 'Faisalabad',
         paymentDate: '20/12/2021'
     },

@@ -6,15 +6,13 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
-    signInWithRedirect,
-    getRedirectResult
+    signInWithPopup
 } from "firebase/auth";
 import {
     getFirestore,
-    query,
-    getDocs,
+    setDoc,
+    doc,
     collection,
-    where,
     addDoc,
 } from "firebase/firestore";
 
@@ -64,13 +62,25 @@ const googleProvider = new GoogleAuthProvider();
     
 const signInWithGoogle = async () => {
         try {
-            await signInWithRedirect(auth, googleProvider);
+            await signInWithPopup(auth, googleProvider);
         } catch (err) {
             console.error(err);
             alert(err.message);
         }
     }
-    
+
+async function addUser(user, isOwner) {
+    try {
+        await setDoc(doc(db, isOwner ? 'owners' : 'tenants', user.uid), {
+            name: user.displayName,
+            email: user.email,
+            isOwner: isOwner
+        });
+        console.log('User added successfully');
+    } catch (error) {
+        console.error('Error adding user: ', error);
+    }
+}
 
 // const createOnAuthStateChangedCallback = (isOwner) => {
 //     console.log("in cretae")
@@ -149,6 +159,7 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
+    addUser
 };
 
 // console.log(app)
