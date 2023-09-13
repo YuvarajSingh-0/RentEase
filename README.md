@@ -4,6 +4,7 @@
 
 Welcome to RentEase Front-end! This README file provides an overview of the project and instructions for contribution.
 
+#### **Status:**  ![#1589F0](https://via.placeholder.com/15/1589F0/1589F0.png) Dev
 
 ## Local Setup
 
