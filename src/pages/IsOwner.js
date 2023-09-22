@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDoc, doc, where, query, getDocs } from "firebase/firestore";
+import { getDoc, doc} from "firebase/firestore";
 import { db, auth, addUser } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const IsOwner = () => {
         if (isOwner === null) {
             fetchData();
         }
-    }, [navigate]);
+    }, [navigate, isOwner, user]);
 
     useEffect(() => {
         console.log("in useeffect", isOwner);
@@ -53,8 +53,7 @@ const IsOwner = () => {
 
 
     return (
-
-        loading ? <div>Loading...</div> : <div>
+        loading || !isOwner ? <div>Loading...</div> : <div>
             <h1>Create Account as</h1>
             <button onClick={() => {
                 setIsOwner(true);

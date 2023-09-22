@@ -1,50 +1,38 @@
-import {getDoc} from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 const HouseCard= (props)=>{
-    const [name,setName]=useState("");
+    const {house_no,address,city,payment_due,resident_email,contact_number,img}=props.info;
     // console.log(props.info);
-    // async get and set resident name
-    async function getName(docRef){
-        const data=await getDoc(docRef);
-        if(data.exists()){
-            setName(data.data().name);
-        }
-    }
-
-    useEffect(()=>{
-        // console.log(props.info.resident,typeof(props.info.resident))
-        if(typeof(props.info.resident)!='string' && props.info.resident){
-            getName(props.info.resident);
-        }
-    },[])
 
     return (
         <div className="card">
             <div className="card-image">
-                <img src={props.info.img} alt=''></img>
+                <img src={img} alt=''></img>
             </div>
             <div className="card-info">
-                {props.info.isOccupied?<h3 className="badge green-badge">Occupied</h3>:<h3 className="badge red-badge">Vacant</h3>}
+                {resident_email?<h3 className="badge green-badge">Occupied</h3>:<h3 className="badge red-badge">Vacant</h3>}
                 <table>
                     <tr>
                         <td>House No.</td>
-                        <td>{props.info.house_no}</td>
+                        <td>{house_no}</td>
                     </tr>
                     <tr>
                         <td>Resident</td>
-                        <td>{name}</td>
+                        <td>{resident_email}</td>
                     </tr>
                     <tr>
                         <td>Phone</td>
-                        <td>{props.info.phone}</td>
+                        <td>{contact_number}</td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>{props.info.address}</td>
+                        <td>{address}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{city}</td>
                     </tr>
                     <tr>
                         <td>Payment Due</td>
-                        <td>{props.info.amount}</td>
+                        <td>{payment_due}</td>
                     </tr>
                 </table>
             </div>
