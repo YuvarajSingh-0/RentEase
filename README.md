@@ -21,9 +21,9 @@ Note: npm automatically installs while installing Node
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/RentEaseOrg/RentEase-frontend
+   git clone https://github.com/YuvarajSingh-0/RentEase.git
    ```
-2. Navigate to the project directory by `cd RentEase-frontend`
+2. Navigate to the project directory by `cd RentEase`
 
 3. Install Dependencies
 `npm install`
