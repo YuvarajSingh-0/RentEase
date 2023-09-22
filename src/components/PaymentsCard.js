@@ -1,10 +1,10 @@
 const PaymentsCard = (props) => {
-    console.log(props);
+    console.log(props.info);
     return (
         <div className="card">
             <div className="card-image">
                 <img src={props.info.img} alt=''></img>
-                <button className={props.info.status==='paid'?'green-badge badge':'badge'}>{props.info.status}</button>
+                <button className={props.info.paymentStatus==='paid'?'green-badge badge':'badge'}>{props.info.paymentStatus}</button>
             </div>
             <div className="card-info">
                 <table>
@@ -17,16 +17,12 @@ const PaymentsCard = (props) => {
                         <td>{props.info.resident}</td>
                     </tr>
                     <tr>
-                        <td>Due Date</td>
-                        <td> {props.info.due_date}</td>
-                    </tr>
-                    <tr>
-                        <td>Amount</td>
+                        <td>Rent</td>
                         <td> {props.info.amount}</td>
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td>{props.info.status}</td>
+                        <td>{props.info.paymentStatus}</td>
                     </tr>
                 </table>
             </div>

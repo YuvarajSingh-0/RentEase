@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import HouseCard from "../components/HouseCard";
-import AddHouseCard from "../components/AddHouseCard";
-import { auth, db } from "../config/firebase";
+import HouseCard from "../../components/HouseCard";
+import AddHouseCard from "../../components/AddHouseCard";
+import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, doc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";

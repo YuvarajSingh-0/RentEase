@@ -1,10 +1,10 @@
 import './config/firebase'
 import './App.css';
 import { Navigate, BrowserRouter, Routes, Route } from 'react-router-dom';
-import OwnerDashboard from './pages/OwnerDashboard';
+import OwnerDashboard from './pages/ownerInfo/OwnerDashboard';
 import Navbar from './components/Navbar';
 import Payments from './pages/Payments';
-import Issues from './pages/Issues';
+import Issues from './pages/ownerInfo/Issues';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import LandingPage from './pages/LandingPage'
